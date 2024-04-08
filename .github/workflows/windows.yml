@@ -19,6 +19,9 @@ on:
         required: true
         default: "5"
 
+env:
+  PLUGIN_NAME: wireshark-smf-windows-x64.zip
+  
 jobs:
   windows:
     name: Build on Windows
@@ -86,6 +89,10 @@ jobs:
       - name: Build
         run: cmake --build . --config RelWithDebInfo
         working-directory: build
+
+      - name: Create Zip
+        working-directory: ${{ github.workspace }}/build/run/RelWithDebInfo/plugins
+        run: Compress-Archive ./* -Destination ${{ env.PLUGIN_NAME }}
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4

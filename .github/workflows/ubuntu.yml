@@ -18,6 +18,10 @@ on:
         type: string
         required: true
         default: "5"
+        
+env:
+  PLUGIN_NAME: wireshark-smf-linux-x86_64.tar.gz
+
 jobs:
   ubuntu:
     name: Build on Linux
@@ -53,9 +57,13 @@ jobs:
         run: ninja
         working-directory: build
 
+      - name: Create Tar
+        working-directory: ${{ github.workspace }}/build/run/plugins
+        run: tar -czvf ${{ env.PLUGIN_NAME }} **
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: wireshark-smf-linux
-          path: ${{ github.workspace }}/build/run/plugins/**/epan/smf.so
+          path: "${{ github.workspace }}/build/run/plugins/${{ env.PLUGIN_NAME }}"
           overwrite: true
