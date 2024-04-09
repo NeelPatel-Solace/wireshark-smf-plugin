@@ -19,6 +19,9 @@ on:
         required: true
         default: "5"
 
+env:
+  PLUGIN_NAME: wireshark-smf-macos-arm64.tar.gz
+
 jobs:
   macos:
     name: Build on MacOS
@@ -83,11 +86,11 @@ jobs:
       
       - name: Create Tar
         working-directory: ${{ github.workspace }}/build/run/Wireshark.app/Content/PlugIns/wireshark
-        run: tar -czvf wireshark-smf-macos-arm64.tar.gz **
+        run: tar -czvf ${{ env.PLUGIN_NAME }} **
       
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: wireshark-smf-macos-arm64
-          path: "${{ github.workspace }}/build/run/Wireshark.app/Contents/PlugIns/wireshark/wireshark-smf-macos-arm64.tar.gz"
+          path: "${{ github.workspace }}/build/run/Wireshark.app/Contents/PlugIns/wireshark/${{ env.PLUGIN_NAME }}"
           overwrite: true
