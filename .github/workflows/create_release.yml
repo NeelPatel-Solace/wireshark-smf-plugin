@@ -26,19 +26,19 @@ env:
   MACOS_ARM64_PLUGIN_NAME: wireshark-smf-macos-arm64.tar.gz
 
 jobs:
-  build_linux:
-    uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/ubuntu.yml@release-automation
-    with:
-      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '0' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '5' }}
+ # build_linux:
+ #   uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/ubuntu.yml@release-automation
+ #   with:
+ #     MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
+ #     MINOR_VERSION: ${{ inputs.MINOR_VERSION || '0' }}
+ #     PATCH_VERSION: ${{ inputs.PATCH_VERSION || '5' }}
   
-  build_windows:
-    uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/windows.yml@release-automation
-    with:
-      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '0' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '5' }}
+ # build_windows:
+ #   uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/windows.yml@release-automation
+ #   with:
+ #     MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
+ #     MINOR_VERSION: ${{ inputs.MINOR_VERSION || '0' }}
+ #     PATCH_VERSION: ${{ inputs.PATCH_VERSION || '5' }}
     
   build_macos:
     uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/macos.yml@release-automation
@@ -49,7 +49,8 @@ jobs:
       
   create_release:
     runs-on: ubuntu-22.04
-    needs: [build_linux, build_windows, build_macos]
+    #needs: [build_linux, build_windows, build_macos]
+    needs: [build_macos]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -64,6 +65,7 @@ jobs:
         with:
             name: "Wireshark SMF Plugin ${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.RELEASE_PATCH_VERSION }}"
             tag: "${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.RELEASE_PATCH_VERSION }}"
-            artifacts: "${{ env.LINUX_x86_64_PLUGIN_NAME }}/*, ${{ env.WINDOWS_x64_PLUGIN_NAME }}/*, ${{ env.MACOS_ARM64_PLUGIN_NAME }}/*"
+            #artifacts: "${{ env.LINUX_x86_64_PLUGIN_NAME }}/*, ${{ env.WINDOWS_x64_PLUGIN_NAME }}/*, ${{ env.MACOS_ARM64_PLUGIN_NAME }}/*"
+            artifacts: "${{ env.MACOS_ARM64_PLUGIN_NAME }}/*"
             bodyFile: "${{ github.workspace }}/docs/wireshark_smf_4-0-x_instructions.md"
             draft: true
