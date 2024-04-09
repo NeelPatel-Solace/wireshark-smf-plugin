@@ -1,5 +1,7 @@
 name: Create Release
 on:
+  push:
+    branches: release-automation
   workflow_dispatch:
     inputs:
       MAJOR_VERSION:
