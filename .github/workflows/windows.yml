@@ -89,7 +89,9 @@ jobs:
       - name: Build
         run: cmake --build . --config RelWithDebInfo
         working-directory: build
-
+      
+      # A zip is created for release
+      # This means that the artifact is double-zipped as a result
       - name: Create Zip
         working-directory: ${{ github.workspace }}/build/run/RelWithDebInfo/plugins
         run: Compress-Archive ./* -Destination ${{ github.workspace }}\${{ env.PLUGIN_NAME }}

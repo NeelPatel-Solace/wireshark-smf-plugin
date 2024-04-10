@@ -84,7 +84,9 @@ jobs:
         run: ninja
         working-directory: build
 
-      - name: Create Tar
+      # A compressed tarball is created for release
+      # This means that the artifact is compressed and zipped as a result.
+      - name: Create Compressed Tarball
         working-directory: ${{ github.workspace }}/build/run/Wireshark.app/Content/PlugIns/wireshark
         run: tar -czvf ${{ github.workspace }}/${{ env.PLUGIN_NAME }} **/epan/smf.so
       
