@@ -98,4 +98,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: wireshark-smf-windows
-          path: ${{ github.workspace }}/build/run/RelWithDebInfo/plugins/**/**/smf.dll
+          path: ${{ github.workspace }}/build/run/RelWithDebInfo/plugins/${{ env.PLUGIN_NAME }}

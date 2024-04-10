@@ -59,7 +59,8 @@ jobs:
 
       - name: Create Tar
         working-directory: ${{ github.workspace }}/build/run/plugins
-        run: tar -czvf ${{ env.PLUGIN_NAME }} **
+        
+        run: tar -czvf ${{ env.PLUGIN_NAME }} **/epan/smf.so
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
