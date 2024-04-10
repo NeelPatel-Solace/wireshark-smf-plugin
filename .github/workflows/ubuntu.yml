@@ -60,11 +60,11 @@ jobs:
       - name: Create Tar
         working-directory: ${{ github.workspace }}/build/run/plugins
         
-        run: tar -czvf ${{ env.PLUGIN_NAME }} **/epan/smf.so
-
+        run: tar -czvf ${{ github.workspace }}/${{ env.PLUGIN_NAME }} **/epan/smf.so
+        
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: wireshark-smf-linux
-          path: "${{ github.workspace }}/build/run/plugins/${{ env.PLUGIN_NAME }}"
+          name: ${{ env.PLUGIN_NAME }}
+          path: "${{ github.workspace }}/${{ env.PLUGIN_NAME }}"
           overwrite: true

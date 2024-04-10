@@ -71,7 +71,7 @@ jobs:
             -D Qt5_DIR=${{ env.Qt5_DIR }} \
             -D Qt5Core_DIR=${{ env.Qt5_DIR }} \
             -D CMAKE_OSX_ARCHITECTURES="arm64" \
-            -DCMAKE_APPLE_SILICON_PROCESSOR=arm64 \
+            -DCMAKE_APPLE_SILICON_PROCESSOR=arm64 \s
             -DCMAKE_OSX_ARCHITECTURES=arm64 \
             -DPython_ROOT_DIR=${{ env.pythonLocation }} \
             -DPython_LIBRARY=${{ env.pythonLocation }}/lib \
