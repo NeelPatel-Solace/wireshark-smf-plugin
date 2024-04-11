@@ -41,7 +41,7 @@ jobs:
       PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
     
   build_macos:
-    uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/macos.yml@release-automation
+    uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/macos_arm64.yml@release-automation
     with:
       MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
       MINOR_VERSION: ${{ inputs.MINOR_VERSION || '2' }}
