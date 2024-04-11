@@ -11,11 +11,11 @@ on:
       MINOR_VERSION:
         description: "Minor version of the wireshark tag"
         required: true
-        default: "0"
+        default: "2"
       PATCH_VERSION:
           description: "Patch version of the wireshark tag"
           required: true
-          default: "5"
+          default: "4"
       RELEASE_PATCH_VERSION:
         description: "PATCH for SMF plugin"
         required: true
@@ -30,22 +30,22 @@ jobs:
     uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/ubuntu.yml@release-automation
     with:
       MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '0' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '5' }}
+      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '2' }}
+      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
   
   build_windows:
     uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/windows.yml@release-automation
     with:
       MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '0' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '5' }}
+      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '2' }}
+      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
     
   build_macos:
     uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/macos.yml@release-automation
     with:
       MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '0' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '5' }}
+      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '2' }}
+      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
       
   create_release:
     runs-on: ubuntu-22.04
