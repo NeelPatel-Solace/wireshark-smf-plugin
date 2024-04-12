@@ -37,9 +37,9 @@ jobs:
       #  uses: actions/checkout@v4
       #  with:
       #    submodules: recursive
-
-      - name: Checkout with Specified Input
-        if : ${{ inputs.MAJOR_VERSION != '' }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Checkout Wireshark
         uses: actions/checkout@v4
         with:
           repository: wireshark/wireshark

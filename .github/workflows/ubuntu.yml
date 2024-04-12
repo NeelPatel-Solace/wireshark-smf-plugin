@@ -33,14 +33,15 @@ jobs:
       #  with:
       #    submodules: recursive
 
-      - name: Checkout with Specified Input
-        if : ${{ inputs.MAJOR_VERSION != '' }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Checkout Wireshark
         uses: actions/checkout@v4
         with:
           repository: wireshark/wireshark
           path: "./wireshark"
           ref: v${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.PATCH_VERSION }}
-
+          
       - name: Install deps
         run: sudo ./wireshark/tools/debian-setup.sh --install-optional --install-test-deps --install-deb-deps python3-pip -y
 
