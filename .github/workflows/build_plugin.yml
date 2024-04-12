@@ -9,15 +9,15 @@ on:
       MAJOR_VERSION:
         description: "Version string for wireshark tag needed to build can be v#.#.# or v#.#.#-rc#"
         required: false
-        default: ""
+        default: ''
       MINOR_VERSION:
         description: "Minor version of the wireshark tag"
         required: false
-        default: ""
+        default: ''
       PATCH_VERSION:
         description: "Patch version of the wireshark tag"
         required: false
-        default: ""
+        default: ''
 jobs:
   # Commenting out intel mac for regular builds as it is currently broken.
   #build_macos:
@@ -29,15 +29,15 @@ jobs:
   build_macos_arm64:
     uses: SolaceLabs/wireshark-smf-plugin/.github/workflows/macos_arm64.yml@main
     with:
-      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '2' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
+      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '' }}
+      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '' }}
+      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '' }}
   build_windows:
     uses: SolaceLabs/wireshark-smf-plugin/.github/workflows/windows.yml@main
     with:
-      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '2' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
+      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '' }}
+      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '' }}
+      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '' }}
   build_linux:
     uses: SolaceLabs/wireshark-smf-plugin/.github/workflows/ubuntu.yml@main
     with:

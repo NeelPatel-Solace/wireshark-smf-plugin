@@ -19,7 +19,7 @@ on:
       RELEASE_PATCH_VERSION:
         description: "PATCH for SMF plugin"
         required: true
-        default: ""
+        default: ''
 env:
   LINUX_x86_64_PLUGIN_NAME: wireshark-smf-linux-x86_64.tar.gz
   WINDOWS_x64_PLUGIN_NAME: wireshark-smf-windows-x64.zip
@@ -36,16 +36,16 @@ jobs:
   build_windows:
     uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/windows.yml@release-automation
     with:
-      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '2' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
+      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '' }}
+      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '' }}
+      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '' }}
     
   build_macos:
     uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/macos_arm64.yml@release-automation
     with:
-      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '2' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
+      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '' }}
+      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '' }}
+      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '' }}
       
   create_release:
     runs-on: ubuntu-22.04

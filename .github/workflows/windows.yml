@@ -7,17 +7,17 @@ on:
         description: "Version string for wireshark tag needed to build can be v#.#.# or v#.#.#-rc#"
         type: string
         required: true
-        default: "4"
+        default: ''
       MINOR_VERSION:
         description: "Minor version of the wireshark tag"
         type: string
         required: true
-        default: "2"
+        default: ''
       PATCH_VERSION:
         description: "Patch version of the wireshark tag"
         type: string
         required: true
-        default: "4"
+        default: ''
 
 env:
   PLUGIN_NAME: wireshark-smf-windows-x64.zip
@@ -32,6 +32,20 @@ jobs:
       CMAKE_PREFIX_PATH: D:\a\wireshark-smf-plugin\Qt\6.2.3\msvc2019_64
       WIRESHARK_VERSION_EXTRA: -GithubActionBuild
     steps:
+      - name: Checkout with Submodule
+        if: ${{ inputs.MAJOR_VERSION == '' }}
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Checkout with Specified Input
+        if : ${{ inputs.MAJOR_VERSION != '' }}
+        uses: actions/checkout@v4
+        with:
+          repository: wireshark/wireshark
+          path: "./wireshark"
+          ref: v${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.PATCH_VERSION }}
+
       - name: Checkout
         uses: actions/checkout@v3
 
