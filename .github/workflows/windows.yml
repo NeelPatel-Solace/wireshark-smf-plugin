@@ -7,17 +7,17 @@ on:
         description: "Version string for wireshark tag needed to build can be v#.#.# or v#.#.#-rc#"
         type: string
         required: true
-        default: ''
+        default: '4'
       MINOR_VERSION:
         description: "Minor version of the wireshark tag"
         type: string
         required: true
-        default: ''
+        default: '2'
       PATCH_VERSION:
         description: "Patch version of the wireshark tag"
         type: string
         required: true
-        default: ''
+        default: '4'
 
 env:
   PLUGIN_NAME: wireshark-smf-windows-x64.zip
@@ -32,11 +32,11 @@ jobs:
       CMAKE_PREFIX_PATH: D:\a\wireshark-smf-plugin\Qt\6.2.3\msvc2019_64
       WIRESHARK_VERSION_EXTRA: -GithubActionBuild
     steps:
-      - name: Checkout with Submodule
-        if: ${{ inputs.MAJOR_VERSION == '' }}
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
+      #- name: Checkout with Submodule
+      #  if: ${{ inputs.MAJOR_VERSION == '' }}
+      #  uses: actions/checkout@v4
+      #  with:
+      #    submodules: recursive
 
       - name: Checkout with Specified Input
         if : ${{ inputs.MAJOR_VERSION != '' }}
@@ -83,7 +83,7 @@ jobs:
 
       - name: Cmake
         run: |
-          cmake -DUSE_qt6=ON -DCMAKE_SYSTEM_VERSION="10.0.20348.0" -A x64 ../wireshark -DCMAKE_POLICY_DEFAULT_CMP0094=NEW -DPythopn3_ROOT_DIR='${{ env.Python3_ROOT_DIR }}' -DPython3_EXECUTABLE='${{ env.Python3_ROOT_DIR }}\python.exe' -DPython3_LIBRARY='${{ env.Python3_ROOT_DIR }}\libs\python380.lib' -DPython3_INCLUDE_DIR='${{ env.Python3_ROOT_DIR }}\Include'
+          cmake -DUSE_qt6=ON -DCMAKE_SYSTEM_VERSION="10.0.20348.0" -A x64 ../wireshark -DCMAKE_POLICY_DEFAULT_CMP0094=NEW -DPython3_ROOT_DIR='${{ env.Python3_ROOT_DIR }}' -DPython3_EXECUTABLE='${{ env.Python3_ROOT_DIR }}\python.exe' -DPython3_LIBRARY='${{ env.Python3_ROOT_DIR }}\libs\python380.lib' -DPython3_INCLUDE_DIR='${{ env.Python3_ROOT_DIR }}\Include'
         env:
           PLATFORM: x64
           WIRESHARK_BASE_DIR: C:/wireshark-libs

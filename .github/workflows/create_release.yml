@@ -7,15 +7,15 @@ on:
       MAJOR_VERSION:
         description: "Version string for wireshark tag needed to build can be v#.#.# or v#.#.#-rc#"
         required: false
-        default: ''
+        default: '4'
       MINOR_VERSION:
         description: "Minor version of the wireshark tag"
         required: false
-        default: ''
+        default: '2'
       PATCH_VERSION:
           description: "Patch version of the wireshark tag"
           required: false
-          default: ''
+          default: '4'
       RELEASE_PATCH_VERSION:
         description: "PATCH for SMF plugin"
         required: true
@@ -29,23 +29,23 @@ jobs:
   build_linux:
     uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/ubuntu.yml@release-automation
     with:
-      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '' }}
+      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
+      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '2' }}
+      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
   
   build_windows:
     uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/windows.yml@release-automation
     with:
-      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '' }}
+      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
+      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '2' }}
+      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
     
   build_macos:
     uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/macos_arm64.yml@release-automation
     with:
-      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '' }}
+      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
+      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '2' }}
+      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
       
   create_release:
     runs-on: ubuntu-22.04

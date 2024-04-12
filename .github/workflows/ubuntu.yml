@@ -7,17 +7,17 @@ on:
         description: "Version string for wireshark tag needed to build can be v#.#.# or v#.#.#-rc#"
         type: string
         required: true
-        default: ''
+        default: '4'
       MINOR_VERSION:
         description: "Minor version of the wireshark tag"
         type: string
         required: true
-        default: ''
+        default: '2'
       PATCH_VERSION:
         description: "Patch version of the wireshark tag"
         type: string
         required: true
-        default: ''
+        default: '4'
         
 env:
   PLUGIN_NAME: wireshark-smf-linux-x86_64.tar.gz
@@ -27,11 +27,11 @@ jobs:
     name: Build on Linux
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout with Submodule
-        if: ${{ inputs.MAJOR_VERSION == '' }}
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
+      #- name: Checkout with Submodule
+      #  if: ${{ inputs.MAJOR_VERSION == '' }}
+      #  uses: actions/checkout@v4
+      #  with:
+      #    submodules: recursive
 
       - name: Checkout with Specified Input
         if : ${{ inputs.MAJOR_VERSION != '' }}
