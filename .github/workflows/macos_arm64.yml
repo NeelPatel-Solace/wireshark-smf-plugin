@@ -59,8 +59,8 @@ jobs:
             libmaxminddb libsmi spandsp brotli minizip zstd libssh libilbc speexdsp gettext pcre2 "$@"
 
           # install qt6
-          brew install qt@6.5.3
-          qt6_dir="$(brew --prefix)/opt/qt@6/lib/cmake/Qt6:/usr/local/Cellar/qt@6/6.5.3:/usr/local/Cellar/qt@6/6.5.3/lib/cmake/Qt6:/usr/local/opt/qt@6/bin:/opt/homebrew/opt/qt@6"
+          brew install qt@6
+          qt6_dir="$(brew --prefix)/opt/qt@6/lib/cmake/Qt6:/usr/local/Cellar/qt@6/6.6.2:/usr/local/Cellar/qt@6/6.6.2/lib/cmake/Qt6:/usr/local/opt/qt@6/bin:/opt/homebrew/opt/qt@6"
           echo "Qt6_DIR=$qt6_dir" >> $GITHUB_ENV
 
       - name: Link SMF plugin
