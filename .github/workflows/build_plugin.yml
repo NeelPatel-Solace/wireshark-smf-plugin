@@ -8,16 +8,16 @@ on:
     inputs:
       MAJOR_VERSION:
         description: "Version string for wireshark tag needed to build can be v#.#.# or v#.#.#-rc#"
-        required: true
-        default: "4"
+        required: false
+        default: ""
       MINOR_VERSION:
         description: "Minor version of the wireshark tag"
-        required: true
-        default: "0"
+        required: false
+        default: ""
       PATCH_VERSION:
         description: "Patch version of the wireshark tag"
-        required: true
-        default: "5"
+        required: false
+        default: ""
 jobs:
   # Commenting out intel mac for regular builds as it is currently broken.
   #build_macos:
@@ -41,6 +41,6 @@ jobs:
   build_linux:
     uses: SolaceLabs/wireshark-smf-plugin/.github/workflows/ubuntu.yml@main
     with:
-      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '4' }}
-      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '2' }}
-      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
+      MAJOR_VERSION: ${{ inputs.MAJOR_VERSION || '' }}
+      MINOR_VERSION: ${{ inputs.MINOR_VERSION || '' }}
+      PATCH_VERSION: ${{ inputs.PATCH_VERSION || '' }}
