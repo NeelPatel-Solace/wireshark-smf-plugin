@@ -69,7 +69,7 @@ jobs:
           xcode-version: latest-stable
       
       - name: Run Setup Script
-        run: sudo ./wireshark/tools/macos-setup-brew.sh
+        run: ./wireshark/tools/macos-setup-brew.sh
 
       - name: Link SMF plugin
         shell: bash
