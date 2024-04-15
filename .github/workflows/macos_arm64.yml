@@ -85,6 +85,9 @@ jobs:
 
       - name: Mkdir
         run: mkdir build
+        # -D CMAKE_OSX_ARCHITECTURES="arm64" \
+        # -DCMAKE_APPLE_SILICON_PROCESSOR=arm64 \
+        # -DCMAKE_OSX_ARCHITECTURES=arm64 \
 
       - name: Cmake
         working-directory: build
@@ -97,9 +100,6 @@ jobs:
             -D CMAKE_PREFIX_PATH=${{ env.Qt6_DIR }} \
             -D Qt6_DIR=${{ env.Qt6_DIR }} \
             -D Qt6Core_DIR=${{ env.Qt6_DIR }} \
-            -D CMAKE_OSX_ARCHITECTURES="arm64" \
-            -DCMAKE_APPLE_SILICON_PROCESSOR=arm64 \
-            -DCMAKE_OSX_ARCHITECTURES=arm64 \
             -DCMAKE_C_FLAGS="-std=c99"
             -DPython_ROOT_DIR=${{ env.pythonLocation }} \
             -DPython_LIBRARY=${{ env.pythonLocation }}/lib \
