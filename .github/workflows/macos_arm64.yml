@@ -63,9 +63,13 @@ jobs:
       #    qt6_dir="$(brew --prefix)/opt/qt@6/lib/cmake/Qt6:/usr/local/Cellar/qt@6/6.6.2:/usr/local/Cellar/qt@6/6.6.2/lib/cmake/Qt6:/usr/local/opt/qt@6/bin:/opt/homebrew/opt/qt@6"
       #    echo "Qt6_DIR=$qt6_dir" >> $GITHUB_ENV
 
-      - name: Install Dependencies
-        shell: bash
-        run: sudo ./wireshark/tools/macos-setup.sh
+      - name: Install Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      
+      - name: Run Setup Script
+        run: sudo ./wireshark/tools/setup-macos.sh
 
       - name: Link SMF plugin
         shell: bash
