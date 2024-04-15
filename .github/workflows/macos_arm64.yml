@@ -84,7 +84,7 @@ jobs:
             -D Qt6_DIR=${{ env.Qt6_DIR }} \
             -D Qt6Core_DIR=${{ env.Qt6_DIR }} \
             -D CMAKE_OSX_ARCHITECTURES="arm64" \
-            -DCMAKE_APPLE_SILICON_PROCESSOR=arm64 \s
+            -DCMAKE_APPLE_SILICON_PROCESSOR=arm64 \
             -DCMAKE_OSX_ARCHITECTURES=arm64 \
             -DPython_ROOT_DIR=${{ env.pythonLocation }} \
             -DPython_LIBRARY=${{ env.pythonLocation }}/lib \
