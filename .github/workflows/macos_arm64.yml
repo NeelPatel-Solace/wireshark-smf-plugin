@@ -65,8 +65,7 @@ jobs:
 
       - name: Install Dependencies
         shell: bash
-        run: sudo ./wireshark/tools/macos-setup.sh -y
-
+        run: sudo ./wireshark/tools/macos-setup.sh
 
       - name: Link SMF plugin
         shell: bash
