@@ -48,20 +48,25 @@ jobs:
           path: "./wireshark"
           ref: v${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.PATCH_VERSION }}
 
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-      - name: Install deps
-        continue-on-error: true
-        run: |
-          brew install opus c-ares glib libgcrypt gnutls lua cmake python nghttp2 snappy lz4 libxml2 ninja \
-            libmaxminddb libsmi spandsp brotli minizip zstd libssh libilbc speexdsp gettext pcre2 "$@"
+      #- name: Set up Python 3.10
+      #  uses: actions/setup-python@v4
+      #  with:
+      #    python-version: "3.10"
+      #- name: Install deps
+      #  continue-on-error: true
+      #  run: |
+      #    brew install opus c-ares glib libgcrypt gnutls lua cmake python nghttp2 snappy lz4 libxml2 ninja \
+      #      libmaxminddb libsmi spandsp brotli minizip zstd libssh libilbc speexdsp gettext pcre2 "$@"
 
           # install qt6
-          brew install qt@6
-          qt6_dir="$(brew --prefix)/opt/qt@6/lib/cmake/Qt6:/usr/local/Cellar/qt@6/6.6.2:/usr/local/Cellar/qt@6/6.6.2/lib/cmake/Qt6:/usr/local/opt/qt@6/bin:/opt/homebrew/opt/qt@6"
-          echo "Qt6_DIR=$qt6_dir" >> $GITHUB_ENV
+      #    brew install qt@6
+      #    qt6_dir="$(brew --prefix)/opt/qt@6/lib/cmake/Qt6:/usr/local/Cellar/qt@6/6.6.2:/usr/local/Cellar/qt@6/6.6.2/lib/cmake/Qt6:/usr/local/opt/qt@6/bin:/opt/homebrew/opt/qt@6"
+      #    echo "Qt6_DIR=$qt6_dir" >> $GITHUB_ENV
+
+      - name: Install Dependencies
+        shell: bash
+        run: sudo ./wireshark/tools/macos-setup.sh -y
+
 
       - name: Link SMF plugin
         shell: bash
