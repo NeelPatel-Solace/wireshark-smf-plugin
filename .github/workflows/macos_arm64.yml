@@ -88,7 +88,8 @@ jobs:
         # -D CMAKE_OSX_ARCHITECTURES="arm64" \
         # -DCMAKE_APPLE_SILICON_PROCESSOR=arm64 \
         # -DCMAKE_OSX_ARCHITECTURES=arm64 \
-
+        #  \
+        # -DCMAKE_POLICY_DEFAULT_CMP0094=NEW
       - name: Cmake
         working-directory: build
         env:
@@ -105,10 +106,8 @@ jobs:
             -DPython_LIBRARY=${{ env.pythonLocation }}/lib \
             -DPython_INCLUDE_DIR=${{ env.pythonLocation }}/include \
             -DPython_EXECUTABLE=${{ env.pythonLocation }}/bin/python \
-            -DPython_FIND_STRATEGY=LOCATION \
-            -DCMAKE_POLICY_DEFAULT_CMP0094=NEW
-
-
+            -DPython_FIND_STRATEGY=LOCATION
+            
       - name: Build
         run: ninja
         working-directory: build
