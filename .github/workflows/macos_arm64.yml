@@ -109,15 +109,15 @@ jobs:
             -DPython_FIND_STRATEGY=LOCATION 
             
       - name: Build
-        run: ninja
         working-directory: build
+        run: ninja
+
 
       # A compressed tarball is created for release
       # This means that the artifact is compressed and zipped as a result.
       - name: Create Compressed Tarball
-        working-directory: ${{ github.workspace }}/build
-        #run: tar -czvf ${{ github.workspace }}/${{ env.PLUGIN_NAME }} **/epan/smf.so
-        run: find . | grep smf.so
+        working-directory: run/Wireshark.app/Contents/PlugIns/wireshark/
+        run: tar -czvf ${{ github.workspace }}/${{ env.PLUGIN_NAME }} **/epan/smf.so
       
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
