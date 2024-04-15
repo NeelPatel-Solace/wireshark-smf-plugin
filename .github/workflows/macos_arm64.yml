@@ -101,12 +101,15 @@ jobs:
             -D CMAKE_PREFIX_PATH=${{ env.Qt6_DIR }} \
             -D Qt6_DIR=${{ env.Qt6_DIR }} \
             -D Qt6Core_DIR=${{ env.Qt6_DIR }} \
+            -D CMAKE_OSX_ARCHITECTURES="arm64" \
+            -DCMAKE_APPLE_SILICON_PROCESSOR=arm64 \
+            -DCMAKE_OSX_ARCHITECTURES=arm64 \
             -DCMAKE_C_FLAGS="-std=c99" \
             -DPython_ROOT_DIR=${{ env.pythonLocation }} \
             -DPython_LIBRARY=${{ env.pythonLocation }}/lib \
             -DPython_INCLUDE_DIR=${{ env.pythonLocation }}/include \
             -DPython_EXECUTABLE=${{ env.pythonLocation }}/bin/python \
-            -DPython_FIND_STRATEGY=LOCATION
+            -DPython_FIND_STRATEGY=LOCATION 
             
       - name: Build
         run: ninja
@@ -115,8 +118,9 @@ jobs:
       # A compressed tarball is created for release
       # This means that the artifact is compressed and zipped as a result.
       - name: Create Compressed Tarball
-        working-directory: ${{ github.workspace }}/build/run/Wireshark.app/Content/PlugIns/wireshark
-        run: tar -czvf ${{ github.workspace }}/${{ env.PLUGIN_NAME }} **/epan/smf.so
+        working-directory: ${{ github.workspace }}/build
+        #run: tar -czvf ${{ github.workspace }}/${{ env.PLUGIN_NAME }} **/epan/smf.so
+        run: find . | grep smf.so
       
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
