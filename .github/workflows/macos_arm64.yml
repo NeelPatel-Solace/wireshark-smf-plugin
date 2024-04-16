@@ -116,7 +116,7 @@ jobs:
       # A compressed tarball is created for release
       # This means that the artifact is compressed and zipped as a result.
       - name: Create Compressed Tarball
-        working-directory: run/Wireshark.app/Contents/PlugIns/wireshark/
+        working-directory: ${{ github.workspace }}/run/Wireshark.app/Contents/PlugIns/wireshark
         run: tar -czvf ${{ github.workspace }}/${{ env.PLUGIN_NAME }} **/epan/smf.so
       
       - name: Upload Artifacts
