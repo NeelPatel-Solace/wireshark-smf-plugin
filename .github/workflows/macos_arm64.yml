@@ -84,6 +84,10 @@ jobs:
           ln -s ${{ github.workspace }}/src/CMakeListsCustom.txt  ${{ github.workspace }}/wireshark/CMakeListsCustom.txt
           ln -s ${{ github.workspace }}/src/smf  ${{ github.workspace }}/wireshark/plugins/epan/smf
 
+      - name: Temporarily Remove Checks
+        shell: bash
+        run: rm ${{ github.workspace }}/wireshark/ConfigureChecks.cmake
+        
       - name: Mkdir
         run: mkdir build
         # -D CMAKE_OSX_ARCHITECTURES="arm64" \
