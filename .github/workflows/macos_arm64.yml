@@ -85,19 +85,20 @@ jobs:
         # -DCMAKE_OSX_ARCHITECTURES=arm64 \
         #  \
         # -DCMAKE_POLICY_DEFAULT_CMP0094=NEW
+        #            -D CMAKE_PREFIX_PATH=${{ env.Qt6_DIR }} \
+        # -D Qt6_DIR=${{ env.Qt6_DIR }} \
+        # -D Qt6Core_DIR=${{ env.Qt6_DIR }} \
+        #
       - name: Cmake
         working-directory: build
-        env:
-          CMAKE_PREFIX_PATH: ${{ env.Qt6_DIR }}
-          Qt6_DIR: ${{ env.Qt6_DIR }}
-          PKG_CONFIG_PATH: ${{ env.Qt6_DIR }}/lib/pkgconfig
+        # env:
+          # CMAKE_PREFIX_PATH: ${{ env.Qt6_DIR }}
+          # Qt6_DIR: ${{ env.Qt6_DIR }}
+          # PKG_CONFIG_PATH: ${{ env.Qt6_DIR }}/lib/pkgconfig
         run: |
-          cmake -G Ninja  ${{ github.workspace }}/wireshark \
+          cmake ${{ github.workspace }}/wireshark \
             -DCMAKE_OSX_ARCHITECTURES=arm64 \
-            -DCMAKE_OSX_ARCHITECTURES=arm64 \
-            -D CMAKE_PREFIX_PATH=${{ env.Qt6_DIR }} \
-            -D Qt6_DIR=${{ env.Qt6_DIR }} \
-            -D Qt6Core_DIR=${{ env.Qt6_DIR }} \
+            -DCMAKE_APPLE_SILICON_PROCESSOR=arm64 \
             -DCMAKE_C_FLAGS="-std=c99 -Wall" \
             -DPython_ROOT_DIR=${{ env.pythonLocation }} \
             -DPython_LIBRARY=${{ env.pythonLocation }}/lib \
@@ -107,7 +108,7 @@ jobs:
             
       - name: Build
         working-directory: build
-        run: ninja
+        run: make
 
 
       # A compressed tarball is created for release
