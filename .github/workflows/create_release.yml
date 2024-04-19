@@ -1,5 +1,7 @@
 name: Create Release
 on:
+  push:
+    branches: release-automation
   workflow_dispatch:
     inputs:
       MAJOR_VERSION:
@@ -62,9 +64,14 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
-            name: "Wireshark SMF Plugin ${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.RELEASE_PATCH_VERSION }}"
-            tag: "${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.RELEASE_PATCH_VERSION }}"
+            #name: "Wireshark SMF Plugin ${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.RELEASE_PATCH_VERSION }}"
+            #tag: "${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.RELEASE_PATCH_VERSION }}"
+            #artifacts: "${{ env.LINUX_x86_64_PLUGIN_NAME }}/*, ${{ env.WINDOWS_x64_PLUGIN_NAME }}/*, ${{ env.MACOS_ARM64_PLUGIN_NAME }}/*"
+            #bodyFile: "${{ github.workspace }}/docs/wireshark_smf_${{ inputs.MAJOR_VERSION }}-${{ inputs.MINOR_VERSION }}-x_instructions.md"
+            #draft: true
+            name: "Wireshark SMF Plugin 4.2.TEST"
+            tag: "4.2.0"
             artifacts: "${{ env.LINUX_x86_64_PLUGIN_NAME }}/*, ${{ env.WINDOWS_x64_PLUGIN_NAME }}/*, ${{ env.MACOS_ARM64_PLUGIN_NAME }}/*"
-            # Change back to
-            bodyFile: "${{ github.workspace }}/docs/wireshark_smf_${{ inputs.MAJOR_VERSION }}-${{ inputs.MINOR_VERSION }}-x_instructions.md"
+            bodyFile: "${{ github.workspace }}/docs/wireshark_smf_4-2-x_instructions.md"
             draft: true
+          
