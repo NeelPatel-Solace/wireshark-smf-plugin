@@ -84,10 +84,6 @@ jobs:
           ln -s ${{ github.workspace }}/src/CMakeListsCustom.txt  ${{ github.workspace }}/wireshark/CMakeListsCustom.txt
           ln -s ${{ github.workspace }}/src/smf  ${{ github.workspace }}/wireshark/plugins/epan/smf
 
-      - name: Temporarily Remove Checks
-        shell: bash
-        run: rm ${{ github.workspace }}/wireshark/ConfigureChecks.cmake
-        
       - name: Mkdir
         run: mkdir build
         # -D CMAKE_OSX_ARCHITECTURES="arm64" \
@@ -104,10 +100,11 @@ jobs:
         run: |
           cmake -G Ninja  ${{ github.workspace }}/wireshark \
             -DCMAKE_OSX_ARCHITECTURES=arm64 \
+            -DCMAKE_OSX_ARCHITECTURES=arm64 \
             -D CMAKE_PREFIX_PATH=${{ env.Qt6_DIR }} \
             -D Qt6_DIR=${{ env.Qt6_DIR }} \
             -D Qt6Core_DIR=${{ env.Qt6_DIR }} \
-            -DCMAKE_C_FLAGS="-std=c99" \
+            -DCMAKE_C_FLAGS="-std=c99 -Wall" \
             -DPython_ROOT_DIR=${{ env.pythonLocation }} \
             -DPython_LIBRARY=${{ env.pythonLocation }}/lib \
             -DPython_INCLUDE_DIR=${{ env.pythonLocation }}/include \
