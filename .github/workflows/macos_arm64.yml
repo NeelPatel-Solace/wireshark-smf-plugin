@@ -99,7 +99,6 @@ jobs:
           PKG_CONFIG_PATH: ${{ env.Qt6_DIR }}/lib/pkgconfig
         run: |
           cmake -G Ninja  ${{ github.workspace }}/wireshark \
-            -DCMAKE_APPLE_SILICON_PROCESSOR=arm64 \
             -DCMAKE_OSX_ARCHITECTURES=arm64 \
             -D CMAKE_PREFIX_PATH=${{ env.Qt6_DIR }} \
             -D Qt6_DIR=${{ env.Qt6_DIR }} \
