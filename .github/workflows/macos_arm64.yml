@@ -74,6 +74,7 @@ jobs:
             brew install qt@6
             qt6_dir="$(brew --prefix)/opt/qt@6/lib/cmake/Qt6:/usr/local/Cellar/qt@6/6.6.2:/usr/local/Cellar/qt@6/6.6.2/lib/cmake/Qt6:/usr/local/opt/qt@6/bin:/opt/homebrew/opt/qt@6"
             echo "Qt6_DIR=$qt6_dir" >> $GITHUB_ENV
+            ls $(qt6_dir)
       
       - name: Run Setup Script
         run: ./wireshark/tools/macos-setup-brew.sh
