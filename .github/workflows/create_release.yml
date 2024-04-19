@@ -1,5 +1,6 @@
 name: Create Release
 on:
+  # TODO: Remove on push
   push:
     branches: release-automation
   workflow_dispatch:
@@ -26,6 +27,7 @@ env:
   MACOS_ARM64_PLUGIN_NAME: wireshark-smf-macos-arm64.tar.gz
 
 jobs:
+  # TODO: Change NeelPatel-Solace to SolaceLabs and release-automation to main
   build_linux:
     uses: NeelPatel-Solace/wireshark-smf-plugin/.github/workflows/ubuntu.yml@release-automation
     with:
@@ -48,7 +50,7 @@ jobs:
       PATCH_VERSION: ${{ inputs.PATCH_VERSION || '4' }}
       
   create_release:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     # Wait for all jobs to finish before continuing
     needs: [build_linux, build_windows, build_macos]
     steps:
@@ -64,6 +66,7 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1
         with:
+            # TODO: Uncomment
             #name: "Wireshark SMF Plugin ${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.RELEASE_PATCH_VERSION }}"
             #tag: "${{ inputs.MAJOR_VERSION }}.${{ inputs.MINOR_VERSION }}.${{ inputs.RELEASE_PATCH_VERSION }}"
             #artifacts: "${{ env.LINUX_x86_64_PLUGIN_NAME }}/*, ${{ env.WINDOWS_x64_PLUGIN_NAME }}/*, ${{ env.MACOS_ARM64_PLUGIN_NAME }}/*"

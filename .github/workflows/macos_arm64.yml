@@ -20,6 +20,7 @@ on:
         default: '4'
 
 env:
+  # This is the name for the file in releases
   PLUGIN_NAME: wireshark-smf-macos-arm64.tar.gz
 
 jobs:
