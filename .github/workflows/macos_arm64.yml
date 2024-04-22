@@ -26,7 +26,7 @@ env:
 jobs:
   macos:
     name: Build on MacOS
-    runs-on: macos-latest
+    runs-on: macos-14
     steps:
       #- name: Checkout with Submodule
       #  if: ${{ inputs.MAJOR_VERSION == '' }}
@@ -69,17 +69,17 @@ jobs:
       #    qt6_dir="$(brew --prefix)/opt/qt@6/lib/cmake/Qt6:/usr/local/Cellar/qt@6/6.6.2:/usr/local/Cellar/qt@6/6.6.2/lib/cmake/Qt6:/usr/local/opt/qt@6/bin:/opt/homebrew/opt/qt@6"
       #    echo "Qt6_DIR=$qt6_dir" >> $GITHUB_ENV
       
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v3
-        with:
-          aqtversion: '==3.1.*'
-          version: '6.5.3'
-          host: 'mac'
-          target: 'desktop'
-          arch: 'clang_64'
-          modules: 'qt5compat'
-          tools: 'tools_cmake tools_ninja tools_generic'
-          archives: 'qttools qtbase'
+      #- name: Install Qt
+      #  uses: jurplel/install-qt-action@v3
+      #  with:
+      #    aqtversion: '==3.1.*'
+      #    version: '6.5.3'
+      #    host: 'mac'
+      #    target: 'desktop'
+      #    arch: 'clang_64'
+      #    modules: 'qt5compat'
+      #    tools: 'tools_cmake tools_ninja tools_generic'
+      #    archives: 'qttools qtbase'
 
       - name: Run Setup Script
         run: ./wireshark/tools/macos-setup-brew.sh
