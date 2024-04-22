@@ -64,6 +64,8 @@ jobs:
           brew install opus c-ares glib libgcrypt gnutls lua cmake python nghttp2 snappy lz4 libxml2 ninja \
             libmaxminddb libsmi spandsp brotli minizip zstd libssh libilbc speexdsp gettext pcre2 "$@"
 
+          # install qt5 for compatability issues
+          brew install qt@5
           # install qt6
           brew install qt@6
           qt6_dir="$(brew --prefix)/opt/qt@6/lib/cmake/Qt6:/usr/local/Cellar/qt@6/6.6.2:/usr/local/Cellar/qt@6/6.6.2/lib/cmake/Qt6:/usr/local/opt/qt@6/bin:/opt/homebrew/opt/qt@6"
